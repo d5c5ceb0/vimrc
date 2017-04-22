@@ -54,8 +54,8 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 "airline
-Plugin 'bling/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+"Plugin 'bling/vim-airline'
+"Plugin 'vim-airline/vim-airline-themes'
 " tagbar
 Plugin 'majutsushi/tagbar'
 " nerdtree
@@ -86,6 +86,8 @@ Plugin 'dbakker/vim-projectroot'
 "Yggdroot/indentLine
 "Plugin 'Yggdroot/indentLine'
 
+"fatih/vim-go
+Plugin 'fatih/vim-go'
 "
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -108,6 +110,7 @@ if (g:isGUI)
 	colorscheme solarized
 else                                                "
     set background=dark                             "Ñ¡Ôñdark
+    "set background=light                           "Ñ¡Ôñlight
 	let g:solarized_termcolors=16
 	colorscheme solarized
 endif                                               "
@@ -197,9 +200,9 @@ endif
 
 " need xsel '$sudo apt-get install xsel'
 "Copy contents of System Clipboard to + buffer when entering vim
-autocmd VimEnter * call setreg('+', system('xsel -ob'))
+"autocmd VimEnter * call setreg('+', system('xsel -ob'))
 "Copy contents of + buffer to System Clipboard while leaving vim
-autocmd VimLeave * call system("xsel -ib", getreg('+'))
+"autocmd VimLeave * call system("xsel -ib", getreg('+'))
 
 
 ""+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -257,7 +260,7 @@ function Do_CsTag()
             silent! execute "!dir /b *.c,*.cpp,*.h,*.java,*.cs >> cscope.files"
         else
 			#silent! ProjectRootExe !find `pwd` -name "*.[chSs]" > cscope.files
-			silent! ProjectRootExe !find `pwd` -name "*.[chSs]" -o -name "*.java" > cscope.files
+			silent! ProjectRootExe !find `pwd` -name "*.[chSs]" -o -name "*.java"  -o -name "*.go" > cscope.files
         endif
         silent! ProjectRootExe !cscope -Rbq -i cscope.files
     endif
@@ -268,7 +271,8 @@ function Do_CsTag()
         silent! ProjectRootExe cs add cscope.out
     endif
 
-    ProjectRootExe !ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .
+    "ProjectRootExe !ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .
+	!pwd
 endf
 
 function Do_AddTags()
@@ -296,7 +300,7 @@ function Do_AddTags()
 endf
 
 "-----------------------------------------------------------------------------
-" 2. tagbar
+" 2. tagbar (for mac let g:tagbar_ctags_bin='/usr/local/bin/ctags')
 "-----------------------------------------------------------------------------
 if (g:iswindows)
     let g:tagbar_ctags_bin='ctags.exe'
@@ -420,6 +424,13 @@ let g:gitgutter_signs = 0
 ""-----------------------------------------------------------------------------
 let g:ShowTrailingWhitespace = 0
 
+let g:go_disable_autoinstall = 0
+
+let g:go_highlight_functions = 1  
+let g:go_highlight_methods = 1  
+let g:go_highlight_structs = 1  
+let g:go_highlight_operators = 1  
+let g:go_highlight_build_constraints = 1
 ""+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ""
 ""    ¼üÅÌÓ³Éä
@@ -446,14 +457,14 @@ function TagsAdd()
 	set tags+=~/.tags/tags
 endfunction
 nmap <leader>sc :call TagsAdd()<CR>
-autocmd FileType c,cpp,h,S,java nmap <leader>s :cs find s <C-R>=expand("<cword>")<CR><CR>
-autocmd FileType c,cpp,h,S,java nmap <leader>g :cs find g <C-R>=expand("<cword>")<CR><CR>
-autocmd FileType c,cpp,h,S,java nmap <leader>c :cs find c <C-R>=expand("<cword>")<CR><CR>
-autocmd FileType c,cpp,h,S,java nmap <leader>t :cs find t <C-R>=expand("<cword>")<CR><CR>
-autocmd FileType c,cpp,h,S,java nmap <leader>e :cs find e <C-R>=expand("<cword>")<CR><CR>
-autocmd FileType c,cpp,h,S,java nmap <leader>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
-autocmd FileType c,cpp,h,S,java nmap <leader>i :cs find i <C-R>=expand("<cfile>")<CR><CR>
-autocmd FileType c,cpp,h,S,java nmap <leader>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+autocmd FileType c,cpp,h,S,java,go nmap <leader>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+autocmd FileType c,cpp,h,S,java,go nmap <leader>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+autocmd FileType c,cpp,h,S,java,go nmap <leader>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+autocmd FileType c,cpp,h,S,java,go nmap <leader>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+autocmd FileType c,cpp,h,S,java,go nmap <leader>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+autocmd FileType c,cpp,h,S,java,go nmap <leader>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+autocmd FileType c,cpp,h,S,java,go nmap <leader>i :cs find i <C-R>=expand("<cfile>")<CR><CR>
+autocmd FileType c,cpp,h,S,java,go nmap <leader>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 
 " color column
 ";```g:iscolorcolumn
@@ -483,6 +494,10 @@ nmap <Leader>cS :%s/\s\+$//g<CR>
 nmap <Leader>ep :call Do_CsTag()<CR>
 nmap <Leader>ea :call Do_AddTags()<CR>
 
+nmap <F1> :set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
+imap <F1> <Esc>:set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
+nmap <F2> :.w !pbcopy<CR><CR>
+vmap <F2> :w !pbcopy<CR><CR>
 ""+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ""
 ""    ³£ÓÃ¿ì½Ý¼ü
