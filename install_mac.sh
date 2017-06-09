@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cp ./vimrc ~/.vimrc
+ln vimrc ~/.vimrc
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 vim ~/.vimrc +PluginInstall +qa
 git clone https://github.com/powerline/fonts.git ~/.vim/fonts
