@@ -1,4 +1,4 @@
-# my_vimrc
+# vimrc
 vimrc for vim
 
 ## linux
