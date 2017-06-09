@@ -122,12 +122,15 @@ set cinoptions=:0                                   "设置c的具体缩进方式
 set completeopt=longest,menuone                     "用于插入模式的补全
 set cursorline                                      "突出显示当前行
 set encoding=utf-8                                  "vim内部使用的编码方式
-set fileencoding=chinese                            "设置文件保存编码
+"set fileencoding=chinese                            "设置文件保存编码
+set fileencoding=utf-8                            "设置文件保存编码
 set fileencodings=gb2312,utf-8,gbk,gb18030,chinese  "探测文件的编码方式，并打开
 set termencoding=utf-8                              "设置终端编码方式
 if (g:iswindows)                                    "解决菜单乱码
     set fileformat=dos                              "设置新文件的<EOL>格式
 elseif(g:islinux)
+    set fileformat=unix                             "设置新文件的<EOL>格式
+else
     set fileformat=unix                             "设置新文件的<EOL>格式
 endif                                               "
 set fileformats=unix,dos,mac                        "给出文件的<EOL>格式类型
@@ -179,8 +182,7 @@ set go=                                             "无菜单栏工具栏
 set updatetime=250                                  "vim更新时间250ms
 set shortmess=atI                                   "去掉欢迎界面
 "set showtabline=2                                  "何时显示标签页
-"set laststatus=2                                    "永久显示状态行
-set laststatus=1                                    "永久显示状态行
+set laststatus=2                                    "永久显示状态行
 set statusline=[%f]\ [FORMAT=%{&ff}]                "状态栏设置
 set statusline+=\ [TYPE=%Y]\ [POS=%l,%v]\ [%p%%]
 set statusline+=%{strftime(\"%d/%m/%y\ -\ %H:%M\")}
@@ -355,10 +357,12 @@ let g:airline_powerline_fonts=1
 if !exists('g:airline_symbols')
 let g:airline_symbols = {}
 endif
+let g:airline_section_x = '%Y'
+let g:airline_section_z = '%p%% - (%l,%v)'
 let g:airline_section_error={}
 let g:airline_section_warning={}
+let g:airline#extensions#wordcount#enabled = 0
 "let w:airline_disabled = 1
-
 "
 " orgmode
 "
@@ -382,7 +386,7 @@ let g:ctrlp_working_path_mode = 'ra'
 "
 " fugitive
 "
-"set statusline+=\ [%{fugitive#statusline()}]
+set statusline+=\ [%{fugitive#statusline()}]
 
 "
 " gitgutter
