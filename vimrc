@@ -103,11 +103,12 @@ syntax on                                           "打开语法高亮
 set t_Co=256                                        "设置颜色数据
 if (g:isGUI)
     set background=dark                             "选择dark
-    set background=light                           "选择light
+    "set background=light                           "选择light
     let g:solarized_termcolors=16
 	colorscheme solarized
 else                                                "
-    set background=dark                             "选择dark
+    "set background=dark                             "选择dark
+    set background=light
 	let g:solarized_termcolors=16
 	colorscheme solarized
 endif                                               "
@@ -243,7 +244,7 @@ function Do_CsTag()
         if has("win32")
             silent! execute "!dir /b *.c,*.cpp,*.h,*.java,*.cs >> cscope.files"
         else
-			silent! ProjectRootExe !find `pwd` -name "*.[chSs]" -o -name "*.java"  -o -name "*.go" > cscope.files
+			silent! ProjectRootExe !find `pwd` -name "*.[chSs]" -o -name "*.java"  -o -name "*.go"  -o -name "*.cs" > cscope.files
         endif
         silent! ProjectRootExe !cscope -Rbq -i cscope.files
     endif
@@ -282,14 +283,14 @@ function Do_AddTags()
 	endif
 endf
 
-autocmd FileType c,cpp,h,S,java,go nmap <leader>s :cs find s <C-R>=expand("<cword>")<CR><CR>
-autocmd FileType c,cpp,h,S,java,go nmap <leader>g :cs find g <C-R>=expand("<cword>")<CR><CR>
-autocmd FileType c,cpp,h,S,java,go nmap <leader>c :cs find c <C-R>=expand("<cword>")<CR><CR>
-autocmd FileType c,cpp,h,S,java,go nmap <leader>t :cs find t <C-R>=expand("<cword>")<CR><CR>
-autocmd FileType c,cpp,h,S,java,go nmap <leader>e :cs find e <C-R>=expand("<cword>")<CR><CR>
-autocmd FileType c,cpp,h,S,java,go nmap <leader>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
-autocmd FileType c,cpp,h,S,java,go nmap <leader>i :cs find i <C-R>=expand("<cfile>")<CR><CR>
-autocmd FileType c,cpp,h,S,java,go nmap <leader>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+autocmd FileType c,cpp,cs,h,S,java,go nmap <leader>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+autocmd FileType c,cpp,cs,h,S,java,go nmap <leader>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+autocmd FileType c,cpp,cs,h,S,java,go nmap <leader>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+autocmd FileType c,cpp,cs,h,S,java,go nmap <leader>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+autocmd FileType c,cpp,cs,h,S,java,go nmap <leader>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+autocmd FileType c,cpp,cs,h,S,java,go nmap <leader>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+autocmd FileType c,cpp,cs,h,S,java,go nmap <leader>i :cs find i <C-R>=expand("<cfile>")<CR><CR>
+autocmd FileType c,cpp,cs,h,S,java,go nmap <leader>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 
 nmap <Leader>ep :call Do_CsTag()<CR>
 nmap <Leader>ea :call Do_AddTags()<CR>
