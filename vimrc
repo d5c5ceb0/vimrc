@@ -98,71 +98,71 @@ filetype plugin indent on    " required
 "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 autocmd BufEnter * if expand('%:p') !~ '://' | :lchdir %:p:h | endif
 
-"filetype plugin indent on                           "¿ªÆôÎÄ¼şÀàĞÍ¼ì²â
-syntax on                                           "´ò¿ªÓï·¨¸ßÁÁ
-set t_Co=256                                        "ÉèÖÃÑÕÉ«Êı¾İ
+"filetype plugin indent on                           "å¼€å¯æ–‡ä»¶ç±»å‹æ£€æµ‹
+syntax on                                           "æ‰“å¼€è¯­æ³•é«˜äº®
+set t_Co=256                                        "è®¾ç½®é¢œè‰²æ•°æ®
 if (g:isGUI)
-    set background=dark                             "Ñ¡Ôñdark
-    set background=light                           "Ñ¡Ôñlight
+    set background=dark                             "é€‰æ‹©dark
+    set background=light                           "é€‰æ‹©light
     let g:solarized_termcolors=16
 	colorscheme solarized
 else                                                "
-    set background=dark                             "Ñ¡Ôñdark
+    set background=dark                             "é€‰æ‹©dark
 	let g:solarized_termcolors=16
 	colorscheme solarized
 endif                                               "
-"set clipboard=unnamedplus                           "Ê¹ÓÃÏµÍ³¼ôÇĞ°å
-set autoindent                                      "×Ô¶¯¶ÔÆë
-set autoread                                        "µ±ÎÄ¼ş±»Íâ²¿³ÌĞò¸Ä±äÊ±×Ô¶¯ÔØÈë
-set autowrite                                       "µ±ÎÄ¼şÒ»ÓĞ¸Ä¶¯¾Í×Ô¶¯±£´æ
-set backspace=indent,eol,start                      "Ê¹ÓÃbackspaceÕı³£´¦Àíindent£¬eol£¬start
-set cindent                                         "±à¼­cÎÄ¼şÊ±Ê¹ÓÃcµÄËõ½ø·½Ê½
-set cinoptions=:0                                   "ÉèÖÃcµÄ¾ßÌåËõ½ø·½Ê½
-"set lines=31 columns=73                             "vimÆÁÄ»µÄĞĞÁĞÊı
-set completeopt=longest,menuone                     "ÓÃÓÚ²åÈëÄ£Ê½µÄ²¹È«
-set cursorline                                      "Í»³öÏÔÊ¾µ±Ç°ĞĞ
-set encoding=utf-8                                  "vimÄÚ²¿Ê¹ÓÃµÄ±àÂë·½Ê½
-"set fileencoding=chinese                            "ÉèÖÃÎÄ¼ş±£´æ±àÂë
-set fileencoding=utf-8                            "ÉèÖÃÎÄ¼ş±£´æ±àÂë
-set fileencodings=gb2312,utf-8,gbk,gb18030,chinese  "Ì½²âÎÄ¼şµÄ±àÂë·½Ê½£¬²¢´ò¿ª
-set termencoding=utf-8                              "ÉèÖÃÖÕ¶Ë±àÂë·½Ê½
-if (g:iswindows)                                    "½â¾ö²Ëµ¥ÂÒÂë
-    set fileformat=dos                              "ÉèÖÃĞÂÎÄ¼şµÄ<EOL>¸ñÊ½
+"set clipboard=unnamedplus                           "ä½¿ç”¨ç³»ç»Ÿå‰ªåˆ‡æ¿
+set autoindent                                      "è‡ªåŠ¨å¯¹é½
+set autoread                                        "å½“æ–‡ä»¶è¢«å¤–éƒ¨ç¨‹åºæ”¹å˜æ—¶è‡ªåŠ¨è½½å…¥
+set autowrite                                       "å½“æ–‡ä»¶ä¸€æœ‰æ”¹åŠ¨å°±è‡ªåŠ¨ä¿å­˜
+set backspace=indent,eol,start                      "ä½¿ç”¨backspaceæ­£å¸¸å¤„ç†indentï¼Œeolï¼Œstart
+set cindent                                         "ç¼–è¾‘cæ–‡ä»¶æ—¶ä½¿ç”¨cçš„ç¼©è¿›æ–¹å¼
+set cinoptions=:0                                   "è®¾ç½®cçš„å…·ä½“ç¼©è¿›æ–¹å¼
+"set lines=31 columns=73                             "vimå±å¹•çš„è¡Œåˆ—æ•°
+set completeopt=longest,menuone                     "ç”¨äºæ’å…¥æ¨¡å¼çš„è¡¥å…¨
+set cursorline                                      "çªå‡ºæ˜¾ç¤ºå½“å‰è¡Œ
+set encoding=utf-8                                  "vimå†…éƒ¨ä½¿ç”¨çš„ç¼–ç æ–¹å¼
+"set fileencoding=chinese                            "è®¾ç½®æ–‡ä»¶ä¿å­˜ç¼–ç 
+set fileencoding=utf-8                            "è®¾ç½®æ–‡ä»¶ä¿å­˜ç¼–ç 
+set fileencodings=gb2312,utf-8,gbk,gb18030,chinese  "æ¢æµ‹æ–‡ä»¶çš„ç¼–ç æ–¹å¼ï¼Œå¹¶æ‰“å¼€
+set termencoding=utf-8                              "è®¾ç½®ç»ˆç«¯ç¼–ç æ–¹å¼
+if (g:iswindows)                                    "è§£å†³èœå•ä¹±ç 
+    set fileformat=dos                              "è®¾ç½®æ–°æ–‡ä»¶çš„<EOL>æ ¼å¼
 elseif(g:islinux)
-    set fileformat=unix                             "ÉèÖÃĞÂÎÄ¼şµÄ<EOL>¸ñÊ½
+    set fileformat=unix                             "è®¾ç½®æ–°æ–‡ä»¶çš„<EOL>æ ¼å¼
 else
-    set fileformat=unix                             "ÉèÖÃĞÂÎÄ¼şµÄ<EOL>¸ñÊ½
+    set fileformat=unix                             "è®¾ç½®æ–°æ–‡ä»¶çš„<EOL>æ ¼å¼
 endif                                               "
-set fileformats=unix,dos,mac                        "¸ø³öÎÄ¼şµÄ<EOL>¸ñÊ½ÀàĞÍ
-"set foldenable                                      "¿ªÆôÕÛµş
-"set foldmethod=syntax                               "ÕÛµş·½·¨
-"set foldlevel=3                                     "ÉèÖÃÕÛµş¼¶±ğ
-"set foldcolumn=0                                    "Ö¸¶¨¿í¶ÈµÄÁĞ
-set helpheight=10                                   "°ïÖú´°¿ÚµÄ³õÊ¼»¯¸ß¶È
-set helplang=cn                                     "°ïÖúÎÄµµµÄÓïÒô
-set hidden                                          "ÔÊĞíÎ´±£´æĞŞ¸ÄÊ±ÇĞ»»»º³åÇø
-set history=100                                     "ÀúÊ·ÃüÁî´æ´¢ÌõÊı
-set hlsearch                                        "´ò¿ª¸ßÁÁËÑË÷
-set ignorecase                                      "ËÑË÷ºöÂÔ´óĞ¡Ğ´
-set incsearch                                       "ËÑË÷ÊµÊ±Æ¥Åä
-set smartcase                                       "Èç¹ûËÑË÷Ä£Ê½ÖĞ°üº¬´óĞ´×ÖÄ¸£¬²»ºöÂÔ´óĞ¡Ğ´
-"set mouse=a                                         "ËùÓĞÄ£Ê½ÔÊĞíÊ¹ÓÃÊó±ê
-set number                                          "ÏÔÊ¾ĞĞºÅ
+set fileformats=unix,dos,mac                        "ç»™å‡ºæ–‡ä»¶çš„<EOL>æ ¼å¼ç±»å‹
+"set foldenable                                      "å¼€å¯æŠ˜å 
+"set foldmethod=syntax                               "æŠ˜å æ–¹æ³•
+"set foldlevel=3                                     "è®¾ç½®æŠ˜å çº§åˆ«
+"set foldcolumn=0                                    "æŒ‡å®šå®½åº¦çš„åˆ—
+set helpheight=10                                   "å¸®åŠ©çª—å£çš„åˆå§‹åŒ–é«˜åº¦
+set helplang=cn                                     "å¸®åŠ©æ–‡æ¡£çš„è¯­éŸ³
+set hidden                                          "å…è®¸æœªä¿å­˜ä¿®æ”¹æ—¶åˆ‡æ¢ç¼“å†²åŒº
+set history=100                                     "å†å²å‘½ä»¤å­˜å‚¨æ¡æ•°
+set hlsearch                                        "æ‰“å¼€é«˜äº®æœç´¢
+set ignorecase                                      "æœç´¢å¿½ç•¥å¤§å°å†™
+set incsearch                                       "æœç´¢å®æ—¶åŒ¹é…
+set smartcase                                       "å¦‚æœæœç´¢æ¨¡å¼ä¸­åŒ…å«å¤§å†™å­—æ¯ï¼Œä¸å¿½ç•¥å¤§å°å†™
+"set mouse=a                                         "æ‰€æœ‰æ¨¡å¼å…è®¸ä½¿ç”¨é¼ æ ‡
+set number                                          "æ˜¾ç¤ºè¡Œå·
 "set relativenumber                                  "relative number
-set pumheight=10                                    "²åÈëÄ£Ê½²¹È«µ¯³öÏîÄ¿×î´óÌõÊı
-set ruler                                           "ÏÔÊ¾¹â±êÎ»ÖÃµÄĞĞºÅºÍÁĞºÅ
-set scrolloff=5                                     "ÉèÖÃ¹â±êÉÏÏÂĞĞ±£ÁôĞĞÊı
-"set expandtab                                       "½«Tab¼ü×ª»»Îª¿Õ¸ñ
-set tabstop=4                                       "ÉèÖÃTab¼üµÄ¿í¶È
-set shiftwidth=4                                    "»»ĞĞÊ±×Ô¶¯Ëõ½ø4¸ö¿Õ¸ñ
-set smarttab                                        "Ö¸¶¨°´Ò»´Îbackspace¾ÍÉ¾³ıshiftwidth¿í¶ÈµÄ¿Õ¸ñ
-set showcmd                                         "ÔÚÆÁÄ»×îºóÒ»ĞĞÏÔÊ¾ÃüÁî
-set smartindent                                     "ÖÇÄÜËõ½ø
-set textwidth=78                                    "²åÈëÎÄ±¾×î´ó¿í¶È
-"set whichwrap=h,l                                   "×óÓÒÒÆ¶¯¼ü¿ÉÒÔÒÆ¶¯µ½ÉÏÏÂĞĞ
-set wildignore=*.bak,*.o,*.e,*~                     "ÎÄ¼şÄ£Ê½µÄÁĞ±í
-set wildmenu                                        "ÃüÁîĞĞ²¹È«Ê¹ÓÃÔöÇ¿Ä£Ê½
-set wildmode=list:longest,full                      "Ê¹ÓÃwidecharÖ¸¶¨µÄ×Ö·ûËùÓÃµÄ²¹È«Ä£Ê½
+set pumheight=10                                    "æ’å…¥æ¨¡å¼è¡¥å…¨å¼¹å‡ºé¡¹ç›®æœ€å¤§æ¡æ•°
+set ruler                                           "æ˜¾ç¤ºå…‰æ ‡ä½ç½®çš„è¡Œå·å’Œåˆ—å·
+set scrolloff=5                                     "è®¾ç½®å…‰æ ‡ä¸Šä¸‹è¡Œä¿ç•™è¡Œæ•°
+"set expandtab                                       "å°†Tabé”®è½¬æ¢ä¸ºç©ºæ ¼
+set tabstop=4                                       "è®¾ç½®Tabé”®çš„å®½åº¦
+set shiftwidth=4                                    "æ¢è¡Œæ—¶è‡ªåŠ¨ç¼©è¿›4ä¸ªç©ºæ ¼
+set smarttab                                        "æŒ‡å®šæŒ‰ä¸€æ¬¡backspaceå°±åˆ é™¤shiftwidthå®½åº¦çš„ç©ºæ ¼
+set showcmd                                         "åœ¨å±å¹•æœ€åä¸€è¡Œæ˜¾ç¤ºå‘½ä»¤
+set smartindent                                     "æ™ºèƒ½ç¼©è¿›
+set textwidth=78                                    "æ’å…¥æ–‡æœ¬æœ€å¤§å®½åº¦
+"set whichwrap=h,l                                   "å·¦å³ç§»åŠ¨é”®å¯ä»¥ç§»åŠ¨åˆ°ä¸Šä¸‹è¡Œ
+set wildignore=*.bak,*.o,*.e,*~                     "æ–‡ä»¶æ¨¡å¼çš„åˆ—è¡¨
+set wildmenu                                        "å‘½ä»¤è¡Œè¡¥å…¨ä½¿ç”¨å¢å¼ºæ¨¡å¼
+set wildmode=list:longest,full                      "ä½¿ç”¨widecharæŒ‡å®šçš„å­—ç¬¦æ‰€ç”¨çš„è¡¥å…¨æ¨¡å¼
 if (g:isGUI)
 if (g:iswindows)
 	set guifont=Bitstream_Vera_Sans_Mono:h10:cANSI
@@ -170,37 +170,37 @@ else
 	set guifont=Monaco\ 10, Fira\ Mono\ Medium\ for\ Powerline\ 12
 endif
 else
-	"Ê¹ÓÃterminal×ÖÌå
+	"ä½¿ç”¨terminalå­—ä½“
 endif
-set wrap                                            "×Ô¶¯»»ĞĞ
-set writebackup                                     "±£´æÎÄ¼şÇ°½¨Á¢±¸·İ£¬±£´æ³É¹¦ºóÉ¾³ı¸Ã±¸·İ
-set nobackup                                        "ÉèÖÃÎŞ±¸·İÎÄ¼ş
-set noswapfile                                      "ÉèÖÃÎŞÁÙÊ±ÎÄ¼ş
-"set vb t_vb=                                       "¹Ø±ÕÌáÊ¾Òô
-"set go=menu                                        "²Ëµ¥À¸
-set go=                                             "ÎŞ²Ëµ¥À¸¹¤¾ßÀ¸
-set updatetime=250                                  "vim¸üĞÂÊ±¼ä250ms
-set shortmess=atI                                   "È¥µô»¶Ó­½çÃæ
-"set showtabline=2                                  "ºÎÊ±ÏÔÊ¾±êÇ©Ò³
-set laststatus=2                                    "ÓÀ¾ÃÏÔÊ¾×´Ì¬ĞĞ
-set statusline=[%f]\ [FORMAT=%{&ff}]                "×´Ì¬À¸ÉèÖÃ
+set wrap                                            "è‡ªåŠ¨æ¢è¡Œ
+set writebackup                                     "ä¿å­˜æ–‡ä»¶å‰å»ºç«‹å¤‡ä»½ï¼Œä¿å­˜æˆåŠŸååˆ é™¤è¯¥å¤‡ä»½
+set nobackup                                        "è®¾ç½®æ— å¤‡ä»½æ–‡ä»¶
+set noswapfile                                      "è®¾ç½®æ— ä¸´æ—¶æ–‡ä»¶
+"set vb t_vb=                                       "å…³é—­æç¤ºéŸ³
+"set go=menu                                        "èœå•æ 
+set go=                                             "æ— èœå•æ å·¥å…·æ 
+set updatetime=250                                  "vimæ›´æ–°æ—¶é—´250ms
+set shortmess=atI                                   "å»æ‰æ¬¢è¿ç•Œé¢
+"set showtabline=2                                  "ä½•æ—¶æ˜¾ç¤ºæ ‡ç­¾é¡µ
+set laststatus=2                                    "æ°¸ä¹…æ˜¾ç¤ºçŠ¶æ€è¡Œ
+set statusline=[%f]\ [FORMAT=%{&ff}]                "çŠ¶æ€æ è®¾ç½®
 set statusline+=\ [TYPE=%Y]\ [POS=%l,%v]\ [%p%%]
 set statusline+=%{strftime(\"%d/%m/%y\ -\ %H:%M\")}
-if (g:iswindows && g:isGUI)                         "½â¾ö²Ëµ¥ÂÒÂë
-    source $VIMRUNTIME/delmenu.vim                  "½â¾ö²Ëµ¥ÂÒÂë
-    source $VIMRUNTIME/menu.vim                     "½â¾ö²Ëµ¥ÂÒÂë
-    language messages zh_CN.utf-8                   "½â¾öconsleÊä³öÂÒÂë
+if (g:iswindows && g:isGUI)                         "è§£å†³èœå•ä¹±ç 
+    source $VIMRUNTIME/delmenu.vim                  "è§£å†³èœå•ä¹±ç 
+    source $VIMRUNTIME/menu.vim                     "è§£å†³èœå•ä¹±ç 
+    language messages zh_CN.utf-8                   "è§£å†³consleè¾“å‡ºä¹±ç 
 endif                                               "
-if g:isGUI                                          "ÉèÖÃ gVim ´°¿Ú³õÊ¼Î»ÖÃ¼°´óĞ¡
-    "au GUIEnter * simalt ~x                        "´°¿ÚÆô¶¯Ê±×Ô¶¯×î´ó»¯
-    winpos 0 0                                      "Ö¸¶¨´°¿Ú³öÏÖµÄÎ»ÖÃ£¬×ø±êÔ­µãÔÚÆÁÄ»×óÉÏ½Ç
-	set lines=666 columns=666                       "Ö¸¶¨´°¿Ú´óĞ¡£¬linesÎª¸ß¶È£¬columnsÎª¿í¶È
+if g:isGUI                                          "è®¾ç½® gVim çª—å£åˆå§‹ä½ç½®åŠå¤§å°
+    "au GUIEnter * simalt ~x                        "çª—å£å¯åŠ¨æ—¶è‡ªåŠ¨æœ€å¤§åŒ–
+    winpos 0 0                                      "æŒ‡å®šçª—å£å‡ºç°çš„ä½ç½®ï¼Œåæ ‡åŸç‚¹åœ¨å±å¹•å·¦ä¸Šè§’
+	set lines=666 columns=666                       "æŒ‡å®šçª—å£å¤§å°ï¼Œlinesä¸ºé«˜åº¦ï¼Œcolumnsä¸ºå®½åº¦
 endif
 if (g:islinux)
 "Copy contents of System Clipboard to + buffer when entering vim
-"autocmd VimEnter * call setreg('+', system('xsel -ob'))
+autocmd VimEnter * call setreg('+', system('xsel -ob'))
 "Copy contents of + buffer to System Clipboard while leaving vim
-"autocmd VimLeave * call system("xsel -ib", getreg('+'))
+autocmd VimLeave * call system("xsel -ib", getreg('+'))
 endif
 
 ""+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -211,18 +211,18 @@ endif
 let mapleader=","
 let maplocalleader="."
 
-" ÔÚ²»Ê¹ÓÃ MiniBufExplorer ²å¼şÊ±Ò²¿ÉÓÃ<C-k,j,h,l>ÇĞ»»µ½ÉÏÏÂ×óÓÒµÄ´°¿ÚÖĞÈ¥
+" åœ¨ä¸ä½¿ç”¨ MiniBufExplorer æ’ä»¶æ—¶ä¹Ÿå¯ç”¨<C-k,j,h,l>åˆ‡æ¢åˆ°ä¸Šä¸‹å·¦å³çš„çª—å£ä¸­å»
 noremap <c-k> <c-w>k
 noremap <c-j> <c-w>j
 noremap <c-h> <c-w>h
 noremap <c-l> <c-w>l
 
-" ³£¹æÄ£Ê½ÏÂÇå³ıĞĞÎ²¿Õ¸ñ
+" å¸¸è§„æ¨¡å¼ä¸‹æ¸…é™¤è¡Œå°¾ç©ºæ ¼
 nmap <Leader>cS :%s/\s\+$//g<CR>
 nmap <Leader>ec :w<CR>:!tclsh %<CR>
-" ³£¹æÄ£Ê½ÏÂÇå³ıĞĞÎ²^M·ûºÅ
+" å¸¸è§„æ¨¡å¼ä¸‹æ¸…é™¤è¡Œå°¾^Mç¬¦å·
 ":%s/<C-V><C-M>//g
-"³£¹æÄ£Ê½ÏÂÈ«ÎÄĞĞÄæĞò
+"å¸¸è§„æ¨¡å¼ä¸‹å…¨æ–‡è¡Œé€†åº
 ":g/^/m0
 
 
