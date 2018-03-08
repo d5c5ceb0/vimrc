@@ -67,8 +67,9 @@ Plugin 'tpope/vim-fugitive'
 " white space
 Plugin 'ShowTrailingWhitespace'
 " ultisnips
-Plugin 'UltiSnips'
+Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
+Plugin 'd5c5ceb0/my_snippets'
 " gitgutter
 Plugin 'airblade/vim-gitgutter'
 " syntastic
@@ -89,6 +90,15 @@ Plugin 'iamcco/mathjax-support-for-mkdp'
 Plugin 'sat1993/markdown-preview.vim'
 "rizzatti/dash
 Plugin 'rizzatti/dash.vim'
+
+" vim-javascript
+Plugin 'pangloss/vim-javascript'
+Plugin 'othree/html5.vim'
+Plugin 'ternjs/tern_for_vim'
+
+" youcompleteme
+Plugin 'Valloric/YouCompleteMe'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -102,12 +112,12 @@ autocmd BufEnter * if expand('%:p') !~ '://' | :lchdir %:p:h | endif
 syntax on                                           "打开语法高亮
 set t_Co=256                                        "设置颜色数据
 if (g:isGUI)
-    set background=dark                             "选择dark
+    set background=light                             "选择dark
     "set background=light                           "选择light
     let g:solarized_termcolors=16
 	colorscheme solarized
 else                                                "
-    "set background=dark                             "选择dark
+    "set background=light                             "选择dark
     set background=light
 	let g:solarized_termcolors=16
 	colorscheme solarized
@@ -321,7 +331,8 @@ let g:NERDTreeQuitOnOpen=0
 "let g:NERDTreeShowIgnoredStatus = 1
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
-nmap <leader>nt :ProjectRootExe NERDTreeToggle<cr>
+"nmap <leader>nt :ProjectRootExe NERDTreeToggle<cr>
+nmap <leader>nt :NERDTreeToggle<cr>
 
 "
 " OmniCppComplete.vim
@@ -340,6 +351,10 @@ let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
 let g:snips_author="d5c5ceb0"
 let g:snips_email="d5c5ceb0@gmail.com"
 let g:snips_copyright="d5c5ceb0"
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-f>"
+let g:UltiSnipsJumpBackwardTrigger="<c-b>"
+
 "
 
 "
@@ -453,4 +468,56 @@ let g:mkdp_auto_open = 0
 let g:mkdp_auto_close = 1
 let g:mkdp_refresh_slow = 0
 let g:mkdp_command_for_global = 0
+
+"
+" javacript
+" 
+let javascript_enable_domhtmlcss = 1
+
+"
+" tern
+"
+"enable keyboard shortcuts
+let g:tern_map_keys=1
+"show argument hints
+let g:tern_show_argument_hints='on_hold'
+"    *<LocalLeader>tD*   |:TernDoc|
+"    *<LocalLeader>tb*   |:TernDocBrowse|
+"    *<LocalLeader>tt*   |:TernType|
+"    *<LocalLeader>td*   |:TernDef|
+"    *<LocalLeader>tpd*  |:TernDefPreview|
+"    *<LocalLeader>tsd*  |:TernDefSplit|
+"    *<LocalLeader>ttd*  |:TernDefTab|
+"    *<LocalLeader>tr*   |:TernRefs|
+"    *<LocalLeader>tR*   |:TernRename|
+"
+" 
+" youcompleteme
+" ./install.py --go-completer
+" 开启语义补全
+let g:ycm_seed_identifiers_with_syntax=1
+
+"在注释输入中也能补全
+let g:ycm_complete_in_comments=1
+let g:ycm_collect_identifiers_from_tags_files=1
+let g:ycm_min_num_of_chars_for_completion=1
+
+"在字符串输入中也能补全
+let g:ycm_complete_in_strings = 1
+
+let g:ycm_filetype_blacklist = {
+      \ 'tagbar' : 1,
+      \ 'nerdtree' : 1,
+      \}
+
+" 设置默认的.ycm_extra_conf.py文件
+let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+let g:ycm_enable_diagnostic_signs = 0
+let g:ycm_enable_diagnostic_highlighting = 0
+let g:ycm_confirm_extra_conf = 0
+let g:ycm_cache_omnifunc=0
+let g:ycm_server_keep_logfiles = 1
+
+" 不弹出Scratch窗
+set completeopt-=previe
 
