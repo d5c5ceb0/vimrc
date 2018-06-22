@@ -79,7 +79,7 @@ Plugin 'altercation/vim-colors-solarized'
 "vim-projectroot
 Plugin 'dbakker/vim-projectroot'
 "Yggdroot/indentLine
-"Plugin 'Yggdroot/indentLine'
+Plugin 'Yggdroot/indentLine'
 "fatih/vim-go
 Plugin 'fatih/vim-go'
 "plasticboy/vim-markdown
@@ -98,6 +98,10 @@ Plugin 'ternjs/tern_for_vim'
 
 " youcompleteme
 Plugin 'Valloric/YouCompleteMe'
+" surround
+"Plugin 'tpope/vim-surround'
+"dict
+Plugin 'iamcco/dict.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -170,7 +174,7 @@ set smarttab                                        "指定按一次backspace就
 set showcmd                                         "在屏幕最后一行显示命令
 set smartindent                                     "智能缩进
 set textwidth=78                                    "插入文本最大宽度
-"set whichwrap=h,l                                   "左右移动键可以移动到上下行
+set whichwrap=h,l                                   "左右移动键可以移动到上下行
 set wildignore=*.bak,*.o,*.e,*~                     "文件模式的列表
 set wildmenu                                        "命令行补全使用增强模式
 set wildmode=list:longest,full                      "使用widechar指定的字符所用的补全模式
@@ -351,7 +355,7 @@ let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
 let g:snips_author="d5c5ceb0"
 let g:snips_email="d5c5ceb0@gmail.com"
 let g:snips_copyright="d5c5ceb0"
-let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-f>"
 let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 
@@ -443,6 +447,16 @@ endfunction
 
 autocmd FileType c,cpp,h nmap <leader>cc :call ToggleColumn()<CR>
 
+" 120 column layout concerns
+highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+match OverLength /\%121v.\+/
+
+if exists('+colorcolumn')
+  set colorcolumn=120
+else
+  au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>120v.\+', -1)
+endif
+
 "
 " vim-go
 "
@@ -452,6 +466,19 @@ let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1  
 let g:go_highlight_operators = 1  
 let g:go_highlight_build_constraints = 1
+
+"let g:go_auto_sameids = 1
+let g:go_fmt_command = "goimports"
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_extra_types = 1
+let g:go_def_mode = 'godef'
+let g:go_decls_includes = "func,type"
+let g:go_addtags_transform = "camelcase"
+au FileType go nmap <F8> :GoAddTags<cr>
+au FileType go nmap <F9> :GoCoverageToggle -short<cr>
+au FileType go nmap <F10> :GoTest -short<cr>
 
 "
 " markdown
@@ -517,7 +544,23 @@ let g:ycm_enable_diagnostic_highlighting = 0
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_cache_omnifunc=0
 let g:ycm_server_keep_logfiles = 1
-
+let g:ycm_auto_trigger=1
+let g:ycm_key_invoke_completion = '<C-a>'
 " 不弹出Scratch窗
 set completeopt-=previe
+
+" indentline
+"let g:indentLine_setColors = 0
+"let g:indentLine_char = '┆'
+let g:indentLine_concealcursor = 'inc'
+let g:indentLine_conceallevel = 2
+let g:indentLine_enabled = 0
+
+" dict
+let g:api_key = "1932136763"
+let g:keyfrom = "aioiyuuko"
+nmap <silent> <Leader>w <Plug>DictWSearch
+nmap <silent> <Leader>w <Plug>DictWVSearch
+nmap <silent> <Leader><Leader>r <Plug>DictRSearch
+vmap <silent> <Leader><Leader>r <Plug>DictRVSearch
 
