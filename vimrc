@@ -91,17 +91,24 @@ Plugin 'sat1993/markdown-preview.vim'
 "rizzatti/dash
 Plugin 'rizzatti/dash.vim'
 
-" vim-javascript
-Plugin 'pangloss/vim-javascript'
-Plugin 'othree/html5.vim'
-Plugin 'ternjs/tern_for_vim'
 
 " youcompleteme
 Plugin 'Valloric/YouCompleteMe'
-" surround
-"Plugin 'tpope/vim-surround'
+" delimitMate
+Plugin 'Raimondi/delimitMate'
 "dict
 Plugin 'iamcco/dict.vim'
+" solidity
+Plugin 'tomlion/vim-solidity'
+
+"frontend
+Plugin 'othree/html5.vim'
+Plugin 'mattn/emmet-vim'
+Plugin 'hail2u/vim-css3-syntax'
+Plugin 'groenewege/vim-less'
+Plugin 'pangloss/vim-javascript'
+Plugin 'heavenshell/vim-jsdoc'
+Plugin 'ternjs/tern_for_vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -503,6 +510,14 @@ let javascript_enable_domhtmlcss = 1
 
 "
 " tern
+" TODO
+" cd youcompleteme
+" ./install.py --go-completer
+" cd tern-for-vim
+" npm install
+" touch ~/.tern-project
+" { "ecmaVersion": 6, "libs": [ "browser", "underscore", "jquery" ], "plugins": { "node": {} } } 
+"
 "
 "enable keyboard shortcuts
 let g:tern_map_keys=1
@@ -520,7 +535,6 @@ let g:tern_show_argument_hints='on_hold'
 "
 " 
 " youcompleteme
-" ./install.py --go-completer
 " 开启语义补全
 let g:ycm_seed_identifiers_with_syntax=1
 
