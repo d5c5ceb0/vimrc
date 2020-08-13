@@ -9,6 +9,7 @@
 "
 " last version: 1.0.0  2012.03.10
 " modify: 2016.03.27
+" modify: 2020.08.15
 "
 "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 "
@@ -48,6 +49,10 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
+" Visual-Mark hotkey <mm, F2>
+Plugin 'Visual-Mark'
+" ack
+Plugin 'mileszs/ack.vim'
 "airline
 Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
@@ -123,13 +128,13 @@ autocmd BufEnter * if expand('%:p') !~ '://' | :lchdir %:p:h | endif
 syntax on                                           "打开语法高亮
 set t_Co=256                                        "设置颜色数据
 if (g:isGUI)
-    set background=light                             "选择dark
-    "set background=light                           "选择light
+    "set background=light                             "选择dark
+    set background=light                           "选择light
     let g:solarized_termcolors=16
 	colorscheme solarized
 else                                                "
     "set background=light                             "选择dark
-    set background=light
+    set background=dark
 	let g:solarized_termcolors=16
 	colorscheme solarized
 endif                                               "
@@ -220,9 +225,9 @@ if g:isGUI                                          "设置 gVim 窗口初始位
 endif
 if (g:islinux)
 "Copy contents of System Clipboard to + buffer when entering vim
-autocmd VimEnter * call setreg('+', system('xsel -ob'))
+"autocmd VimEnter * call setreg('+', system('xsel -ob'))
 "Copy contents of + buffer to System Clipboard while leaving vim
-autocmd VimLeave * call system("xsel -ib", getreg('+'))
+"autocmd VimLeave * call system("xsel -ib", getreg('+'))
 endif
 
 ""+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -267,7 +272,7 @@ function Do_CsTag()
         else
 			silent! ProjectRootExe !find `pwd` -name "*.[chSs]" -o -name "*.java"  -o -name "*.go"  -o -name "*.cs"  -o -name "*.hpp" -o -name "*.cpp" -o -name "*.tcc"> cscope.files
         endif
-        silent! ProjectRootExe !cscope -Rbq -i cscope.files
+		silent! ProjectRootExe !cscope -Rbq -i cscope.files
     endif
 	let g:tmp_path = g:project_path 
 	let g:tmp_path .= "/cscope.out"
@@ -276,8 +281,13 @@ function Do_CsTag()
         silent! ProjectRootExe cs add cscope.out
     endif
 
+	"ctags
     "ProjectRootExe !ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .
-	!pwd
+	"let g:tags_path = join([projectroot#get(), "tags"], "/")
+	"let &tags = g:tags_path
+	
+	redraw!
+
 endf
 
 function Do_AddTags()
@@ -304,16 +314,40 @@ function Do_AddTags()
 	  endif
 	  set csverb
 	endif
+	"ctags
+	"let g:tags_path = join([projectroot#get(), "tags"], "/")
+	"let &tags = g:tags_path
 endf
 
-autocmd FileType c,cpp,tcc,cs,h,hpp,S,java,go nmap <leader>s :cs find s <C-R>=expand("<cword>")<CR><CR>
-autocmd FileType c,cpp,tcc,cs,h,hpp,S,java,go nmap <leader>g :cs find g <C-R>=expand("<cword>")<CR><CR>
-autocmd FileType c,cpp,tcc,cs,h,hpp,S,java,go nmap <leader>c :cs find c <C-R>=expand("<cword>")<CR><CR>
-autocmd FileType c,cpp,tcc,cs,h,hpp,S,java,go nmap <leader>t :cs find t <C-R>=expand("<cword>")<CR><CR>
-autocmd FileType c,cpp,tcc,cs,h,hpp,S,java,go nmap <leader>e :cs find e <C-R>=expand("<cword>")<CR><CR>
-autocmd FileType c,cpp,tcc,cs,h,hpp,S,java,go nmap <leader>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
-autocmd FileType c,cpp,tcc,cs,h,hpp,S,java,go nmap <leader>i :cs find i <C-R>=expand("<cfile>")<CR><CR>
-autocmd FileType c,cpp,tcc,cs,h,hpp,S,java,go nmap <leader>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+
+function Do_AddTagsAuto()
+	let g:project_path = projectroot#get()
+	if ! strlen(g:project_path)
+		retu []
+	endif
+
+	if has("cscope")
+	  let g:tmp_path = g:project_path 
+	  let g:tmp_path .= "/cscope.out"
+	  if filereadable(g:tmp_path)
+		set csto=0
+		set cst
+		set nocsverb
+        execute "cs kill -1"
+        ProjectRootExe cs add cscope.out
+		set csverb
+	  endif
+	endif
+endf
+autocmd FileType c,h,asm,cpp,hpp,java,tcc,cs,go nmap <leader>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+autocmd FileType c,h,asm,cpp,hpp,java,tcc,cs,go nmap <leader>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+autocmd FileType c,h,asm,cpp,hpp,java,tcc,cs,go nmap <leader>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+autocmd FileType c,h,asm,cpp,hpp,java,tcc,cs,go nmap <leader>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+autocmd FileType c,h,asm,cpp,hpp,java,tcc,cs,go nmap <leader>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+autocmd FileType c,h,asm,cpp,hpp,java,tcc,cs,go nmap <leader>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+autocmd FileType c,h,asm,cpp,hpp,java,tcc,cs,go nmap <leader>i :cs find i <C-R>=expand("<cfile>")<CR><CR>
+autocmd FileType c,h,asm,cpp,hpp,java,tcc,cs,go nmap <leader>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+autocmd FileType c,h,asm,cpp,hpp,java,tcc,cs,go call Do_AddTagsAuto()
 
 nmap <Leader>ep :call Do_CsTag()<CR>
 nmap <Leader>ea :call Do_AddTags()<CR>
@@ -578,3 +612,13 @@ nmap <silent> <Leader>w <Plug>DictWVSearch
 nmap <silent> <Leader><Leader>r <Plug>DictRSearch
 vmap <silent> <Leader><Leader>r <Plug>DictRVSearch
 
+
+let g:go_version_warning = 0
+
+
+
+" need ag support
+let g:ackprg = 'ag --nogroup --nocolor --column'
+
+:command! -nargs=1 Ag :ProjectRootExe Ack <args>
+nnoremap <Leader>a :ProjectRootExe Ack!<CR>
