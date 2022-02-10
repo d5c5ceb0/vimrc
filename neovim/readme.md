@@ -30,3 +30,6 @@ cd ~/Downloads/; curl -o init.vim https://raw.githubusercontent.com/plentiform/g
 5. Edit the new configuration file: `nvim ~/.config/nvim/init.vim`
 6. If the plugins didn't automatically install, press colon `:` then type `PlugInstall` and press <kbd>Enter</kbd>
 7. Use vim-go to install binaries, press colon `:` then type `GoInstallBinaries` and press <kbd>Enter</kbd>
+
+
+reference: https://github.com/plentiform/go-ide
