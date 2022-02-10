@@ -31,6 +31,7 @@ Plug 'jistr/vim-nerdtree-tabs'
 Plug 'xuyuanp/nerdtree-git-plugin'
 "Color:
 Plug 'morhetz/gruvbox'
+Plug 'altercation/vim-colors-solarized'
 "Golang:
 Plug 'fatih/vim-go'
 "Autocomplete:
@@ -66,6 +67,8 @@ Plug 'Raimondi/delimitMate'
 Plug 'iamcco/dict.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'entombedvirus/ncm2-vim-go'
+
+Plug 'honza/vim-snippets'
 call plug#end()
 
 let g:iswindows = 0
@@ -106,7 +109,12 @@ vnoremap > >gv
 
 "COLOR:
 "------
-colorscheme gruvbox
+"colorscheme gruvbox
+colorscheme solarized
+set background=light
+
+"FONT
+"font Liberation\ Mono\ Bold
 
 ""+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ""  keymap
